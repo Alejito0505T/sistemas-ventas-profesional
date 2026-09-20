@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas — Sistema de Ventas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="icono">SV</div>
+        <span>Sistema de Ventas</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">👥 Clientes</a>
+        <a href="productos.html" class="nav-item">📦 Productos</a>
+        <a href="ventas.html" class="nav-item activo">🛒 Ventas</a>
+    </nav>
+</aside>
+
+<div class="contenido">
+    <div class="topbar">
+        <div>
+            <h1>Ventas</h1>
+            <p>Registro y consulta de transacciones</p>
+        </div>
+        <button class="btn btn-primary" onclick="Modal.abrir('modalNuevaVenta')">+ Nueva Venta</button>
+    </div>
+
+    <div class="pagina">
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#Venta</th>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Método</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaVentas"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalNuevaVenta">
+    <div class="modal" style="width:800px;">
+        <div class="modal-header">
+            <h3>Nueva Venta</h3>
+            <button onclick="cerrarModalVenta()">✕</button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-grupo">
+                <label class="form-label">Cliente</label>
+                <select id="selectCliente" class="form-control"></select>
+            </div>
+
+            <div class="venta-layout">
+                <div>
+                    <div class="selector-producto">
+                        <select id="selectProducto" class="form-control"></select>
+                        <input type="number" id="cantidadProducto" class="form-control" value="1" min="1" style="width:80px;">
+                        <button class="btn btn-secondary" onclick="agregarAlCarrito()">Agregar</button>
+                    </div>
+
+                    <div class="card" style="min-height:200px;">
+                        <div id="carritoItems" style="padding:14px;">
+                            <p style="text-align:center;color:#9CA3AF;padding:30px;">Agrega productos al carrito</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label">Método de pago</label>
+                    <div class="metodos-pago" id="metodosPago">
+                        <div class="metodo-item seleccionado" data-metodo="Efectivo">Efectivo</div>
+                        <div class="metodo-item" data-metodo="Tarjeta Débito">T. Débito</div>
+                        <div class="metodo-item" data-metodo="Tarjeta Crédito">T. Crédito</div>
+                        <div class="metodo-item" data-metodo="Transferencia">Transferencia</div>
+                    </div>
+
+                    <div class="resumen-venta">
+                        <div class="resumen-linea">
+                            <span>Subtotal</span>
+                            <span id="resumenSubtotal">$0</span>
+                        </div>
+                        <div class="resumen-linea">
+                            <span>IVA (19%)</span>
+                            <span id="resumenIva">$0</span>
+                        </div>
+                        <div class="resumen-linea total">
+                            <span>Total</span>
+                            <span id="resumenTotal">$0</span>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="registrarVenta()">
+                            Registrar Venta
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="js/services/apiClient.js"></script>
+<script src="js/services/clienteService.js"></script>
+<script src="js/services/productoService.js"></script>
+<script src="js/services/ventaService.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/components/modal.js"></script>
+<script src="js/pages/ventasPage.js"></script>
+</body>
+</html>
