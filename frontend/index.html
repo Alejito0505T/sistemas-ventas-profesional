@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes — Sistema de Ventas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="icono">SV</div>
+        <span>Sistema de Ventas</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item activo">👥 Clientes</a>
+    </nav>
+</aside>
+
+<div class="contenido">
+    <div class="topbar">
+        <div>
+            <h1>Clientes</h1>
+            <p>Gestión de compradores</p>
+        </div>
+    </div>
+
+    <div class="pagina">
+
+        <div class="toolbar">
+            <div class="buscador">
+                <span class="lupa">🔍</span>
+                <input type="text" id="buscador" placeholder="Buscar cliente...">
+            </div>
+            <button class="btn btn-primary" onclick="abrirFormularioNuevo()">+ Nuevo Cliente</button>
+        </div>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Documento</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaClientes"></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalCliente">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="tituloModal">Nuevo Cliente</h3>
+            <button onclick="Modal.cerrar('modalCliente')">✕</button>
+        </div>
+        <div class="modal-body">
+            <form id="formCliente">
+                <input type="hidden" id="clienteId">
+                <div class="form-fila">
+                    <div class="form-grupo">
+                        <label class="form-label">Nombres</label>
+                        <input type="text" id="nombres" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Apellidos</label>
+                        <input type="text" id="apellidos" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-fila">
+                    <div class="form-grupo">
+                        <label class="form-label">Tipo de documento</label>
+                        <select id="tipoDoc" class="form-control" required>
+                            <option value="CC">CC</option>
+                            <option value="CE">CE</option>
+                            <option value="NIT">NIT</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Número de documento</label>
+                        <input type="text" id="numDoc" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-label">Teléfono</label>
+                    <input type="tel" id="telefono" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/services/apiClient.js"></script>
+<script src="js/services/clienteService.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/components/modal.js"></script>
+<script src="js/pages/clientesPage.js"></script>
+</body>
+</html>
