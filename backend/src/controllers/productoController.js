@@ -58,7 +58,7 @@ class ProductoController {
 
     static async actualizar(req, res, next) {
         try {
-            const nuevoProducto = await ProductoModel.crear(req.body);
+            const actualizado = await ProductoModel.actualizar(req.params.id, req.body);
             if (!actualizado) {
                 return res.status(404).json({ ok: false, mensaje: 'Producto no encontrado.' });
             }
