@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Sistema de Ventas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="icono">SV</div>
+        <span>Sistema de Ventas</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item activo">🏠 Dashboard</a>
+        <a href="index.html" class="nav-item">👥 Clientes</a>
+        <a href="productos.html" class="nav-item">📦 Productos</a>
+        <a href="ventas.html" class="nav-item">🛒 Ventas</a>
+    </nav>
+</aside>
+
+<div class="contenido">
+    <div class="topbar">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Resumen general del negocio</p>
+        </div>
+    </div>
+
+    <div class="pagina">
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background:#D1FAE5;">💰</div>
+                <div class="kpi-info">
+                    <div class="kpi-value" id="kpiVentasMes">$0</div>
+                    <div class="kpi-label">Ventas del mes</div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background:#DBEAFE;">📦</div>
+                <div class="kpi-info">
+                    <div class="kpi-value" id="kpiProductos">0</div>
+                    <div class="kpi-label">Productos activos</div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background:#EDE9FE;">👥</div>
+                <div class="kpi-info">
+                    <div class="kpi-value" id="kpiClientes">0</div>
+                    <div class="kpi-label">Clientes activos</div>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background:#FEE2E2;">⚠</div>
+                <div class="kpi-info">
+                    <div class="kpi-value" id="kpiStockBajo">0</div>
+                    <div class="kpi-label">Productos stock bajo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <div style="padding:16px 22px;border-bottom:1px solid var(--light-gray);">
+                    <h2 style="font-size:15px;">Ventas Recientes</h2>
+                </div>
+                <div id="listaVentasRecientes" style="padding:0 22px;"></div>
+            </div>
+
+            <div class="card">
+                <div style="padding:16px 22px;border-bottom:1px solid var(--light-gray);">
+                    <h2 style="font-size:15px;">Top 5 Productos Más Vendidos</h2>
+                </div>
+                <div id="listaTopProductos" style="padding:0 22px;"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="js/services/apiClient.js"></script>
+<script src="js/services/dashboardService.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/pages/dashboardPage.js"></script>
+</body>
+</html>
