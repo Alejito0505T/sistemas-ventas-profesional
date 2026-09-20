@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos — Sistema de Ventas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="icono">SV</div>
+        <span>Sistema de Ventas</span>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">👥 Clientes</a>
+        <a href="productos.html" class="nav-item activo">📦 Productos</a>
+    </nav>
+</aside>
+
+<div class="contenido">
+    <div class="topbar">
+        <div>
+            <h1>Productos</h1>
+            <p>Catálogo e inventario</p>
+        </div>
+    </div>
+
+    <div class="pagina">
+
+        <div id="alertaStockBajo"></div>
+
+        <div class="toolbar">
+            <div class="buscador">
+                <span class="lupa">🔍</span>
+                <input type="text" id="buscador" placeholder="Buscar producto...">
+            </div>
+            <button class="btn btn-primary" onclick="abrirFormularioNuevo()">+ Nuevo Producto</button>
+        </div>
+
+        <div class="productos-grid" id="gridProductos"></div>
+
+    </div>
+</div>
+
+<div class="modal-overlay" id="modalProducto">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="tituloModal">Nuevo Producto</h3>
+            <button onclick="Modal.cerrar('modalProducto')">✕</button>
+        </div>
+        <div class="modal-body">
+            <form id="formProducto">
+                <input type="hidden" id="productoId">
+                <div class="form-fila">
+                    <div class="form-grupo">
+                        <label class="form-label">Código</label>
+                        <input type="text" id="codigo" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Categoría</label>
+                        <select id="categoriaId" class="form-control" required>
+                            <option value="1">Electrónica</option>
+                            <option value="2">Ropa</option>
+                            <option value="3">Alimentos</option>
+                            <option value="4">Hogar</option>
+                            <option value="5">Papelería</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" required>
+                </div>
+                <div class="form-fila">
+                    <div class="form-grupo">
+                        <label class="form-label">Precio de venta</label>
+                        <input type="number" id="precioVenta" class="form-control" required>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Stock</label>
+                        <input type="number" id="stock" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-label">Stock mínimo</label>
+                    <input type="number" id="stockMinimo" class="form-control" value="5">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/services/apiClient.js"></script>
+<script src="js/services/productoService.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/components/modal.js"></script>
+<script src="js/pages/productosPage.js"></script>
+</body>
+</html>

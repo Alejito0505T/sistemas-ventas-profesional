@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 const clienteRoutes = require('./src/routes/clienteRoutes');
+const productoRoutes = require('./src/routes/productoRoutes');
 const errorHandler = require('./src/middlewares/errorHandler');
 
 const app = express();
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/clientes', clienteRoutes);
+app.use('/api/productos', productoRoutes);
 
 app.use((req, res) => {
     res.status(404).json({
