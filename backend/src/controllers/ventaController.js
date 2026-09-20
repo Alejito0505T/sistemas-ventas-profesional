@@ -30,14 +30,6 @@ class VentaController {
     static async crear(req, res, next) {
         try {
             const { cliente_id, metodo_pago, productos } = req.body;
-
-            if (!cliente_id || !metodo_pago || !productos || productos.length === 0) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Los campos cliente_id, metodo_pago y al menos un producto son obligatorios.'
-                });
-            }
-
             const resultado = await VentaModel.crear({ cliente_id, metodo_pago }, productos);
 
             res.status(201).json({

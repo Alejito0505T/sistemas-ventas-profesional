@@ -45,15 +45,6 @@ class ProductoController {
 
     static async crear(req, res, next) {
         try {
-            const { categoria_id, codigo, nombre, precio_venta } = req.body;
-
-            if (!categoria_id || !codigo || !nombre || !precio_venta) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Los campos categoria_id, codigo, nombre y precio_venta son obligatorios.'
-                });
-            }
-
             const nuevoProducto = await ProductoModel.crear(req.body);
             res.status(201).json({
                 ok: true,
@@ -67,16 +58,7 @@ class ProductoController {
 
     static async actualizar(req, res, next) {
         try {
-            const { categoria_id, codigo, nombre, precio_venta } = req.body;
-
-            if (!categoria_id || !codigo || !nombre || !precio_venta) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Los campos categoria_id, codigo, nombre y precio_venta son obligatorios.'
-                });
-            }
-
-            const actualizado = await ProductoModel.actualizar(req.params.id, req.body);
+            const nuevoProducto = await ProductoModel.crear(req.body);
             if (!actualizado) {
                 return res.status(404).json({ ok: false, mensaje: 'Producto no encontrado.' });
             }

@@ -32,15 +32,6 @@ class ClienteController {
 
     static async crear(req, res, next) {
         try {
-            const { nombres, apellidos, tipo_doc, num_doc } = req.body;
-
-            if (!nombres || !apellidos || !tipo_doc || !num_doc) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Los campos nombres, apellidos, tipo_doc y num_doc son obligatorios.'
-                });
-            }
-
             const nuevoCliente = await ClienteModel.crear(req.body);
             res.status(201).json({
                 ok: true,
@@ -54,15 +45,6 @@ class ClienteController {
 
     static async actualizar(req, res, next) {
         try {
-            const { nombres, apellidos, tipo_doc, num_doc } = req.body;
-
-            if (!nombres || !apellidos || !tipo_doc || !num_doc) {
-                return res.status(400).json({
-                    ok: false,
-                    mensaje: 'Los campos nombres, apellidos, tipo_doc y num_doc son obligatorios.'
-                });
-            }
-
             const actualizado = await ClienteModel.actualizar(req.params.id, req.body);
             if (!actualizado) {
                 return res.status(404).json({ ok: false, mensaje: 'Cliente no encontrado.' });
