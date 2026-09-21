@@ -22,4 +22,7 @@ class ClienteService {
     static async eliminar(id) {
         return await ApiClient.delete(`/clientes/${id}`);
     }
+    static async reactivar(id) {
+    return await ApiClient.put(`/clientes/${id}/reactivar`, {});
+    }
 }

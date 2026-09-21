@@ -66,6 +66,17 @@ class ClienteController {
             next(error);
         }
     }
+    static async reactivar(req, res, next) {
+    try {
+        const reactivado = await ClienteModel.reactivar(req.params.id);
+        if (!reactivado) {
+            return res.status(404).json({ ok: false, mensaje: 'Cliente no encontrado.' });
+        }
+        res.json({ ok: true, mensaje: 'Cliente reactivado exitosamente.' });
+    } catch (error) {
+        next(error);
+    }
+    }
 }
 
 module.exports = ClienteController;

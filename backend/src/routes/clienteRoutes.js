@@ -8,5 +8,6 @@ router.get('/:id', ClienteController.obtenerUno);
 router.post('/', reglasCliente, validar, ClienteController.crear);
 router.put('/:id', reglasCliente, validar, ClienteController.actualizar);
 router.delete('/:id', ClienteController.eliminar);
+router.put('/:id/reactivar', ClienteController.reactivar);
 
 module.exports = router;

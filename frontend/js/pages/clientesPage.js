@@ -26,8 +26,11 @@ function renderizarTabla(clientes) {
             <td><span class="badge ${c.activo ? 'badge-verde' : 'badge-rojo'}">${c.activo ? 'Activo' : 'Inactivo'}</span></td>
             <td>
                 <button class="btn btn-secondary btn-sm" onclick="editarCliente(${c.cliente_id})">Editar</button>
-                <button class="btn btn-danger btn-sm" onclick="eliminarCliente(${c.cliente_id})">Eliminar</button>
-            </td>
+                ${c.activo
+                    ? `<button class="btn btn-danger btn-sm" onclick="eliminarCliente(${c.cliente_id})">Eliminar</button>`
+                    : `<button class="btn btn-primary btn-sm" onclick="reactivarCliente(${c.cliente_id})">Reactivar</button>`
+                }
+           </td>
         </tr>
     `).join('');
 }
@@ -56,6 +59,17 @@ async function eliminarCliente(id) {
     try {
         await ClienteService.eliminar(id);
         Toast.exito('Cliente eliminado.');
+        cargarClientes();
+    } catch (error) {
+        Toast.error(error.message);
+    }
+}
+
+async function reactivarCliente(id) {
+    if (!confirm('¿Reactivar este cliente?')) return;
+    try {
+        await ClienteService.reactivar(id);
+        Toast.exito('Cliente reactivado.');
         cargarClientes();
     } catch (error) {
         Toast.error(error.message);

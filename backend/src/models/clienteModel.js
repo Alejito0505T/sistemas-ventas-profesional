@@ -45,6 +45,13 @@ class ClienteModel {
         );
         return resultado.affectedRows > 0;
     }
+    static async reactivar(id) {
+    const [resultado] = await pool.query(
+        'UPDATE clientes SET activo = 1 WHERE cliente_id = ?',
+        [id]
+    );
+    return resultado.affectedRows > 0;
+    }
 }
 
 module.exports = ClienteModel;
